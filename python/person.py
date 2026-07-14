@@ -8,6 +8,9 @@ class Person(PersonInterface):
         self._first_name = None
         self._last_name = None
         self._age = None
+        # self.score = 0
+        # self.wins = 0
+        # self.losses = 0
     
     def get_first_name(self) -> str:
         return self._first_name
@@ -29,3 +32,16 @@ class Person(PersonInterface):
     
     def __str__(self) -> str:
         return f"Person(first_name={self._first_name}, last_name={self._last_name}, age={self._age})"
+    
+    if __name__ == "__main__":
+        player = Person("Leigh", "Durham", 45)
+
+        print(player)
+
+        print(player.get_first_name())
+        print(player.get_last_name())
+        print(player.get_age())
+
+        player.set_age(46)
+
+        print(players)
