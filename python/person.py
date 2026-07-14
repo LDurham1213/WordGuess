@@ -32,16 +32,17 @@ class Person(PersonInterface):
     
     def __str__(self) -> str:
         return f"Person(first_name={self._first_name}, last_name={self._last_name}, age={self._age})"
-    
-    if __name__ == "__main__":
-        player = Person("Leigh", "Durham", 45)
 
-        print(player)
 
-        print(player.get_first_name())
-        print(player.get_last_name())
-        print(player.get_age())
+if __name__ == "__main__":
+    player = Person()
 
-        player.set_age(46)
+    player.set_first_name("Leigh")
+    player.set_last_name("Durham")
+    player.set_age(45)
 
-        print(players)
+    print(player.get_first_name())
+    print(player.get_last_name())
+    print(player.get_age())
+
+    print(player)
