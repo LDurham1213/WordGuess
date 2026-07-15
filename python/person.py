@@ -8,9 +8,6 @@ class Person(PersonInterface):
         self._first_name = None
         self._last_name = None
         self._age = None
-        # self.score = 0
-        # self.wins = 0
-        # self.losses = 0
     
     def get_first_name(self) -> str:
         return self._first_name

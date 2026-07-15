@@ -59,7 +59,7 @@ class WordGuess():
         self.player.set_age(age)
 
         print()
-        print(f"Welcom, {self.player.get_first_name()}!")
+        print(f"Welcome, {self.player.get_first_name()}!")
         
     def choose_category(self):
         print()
@@ -81,7 +81,7 @@ class WordGuess():
             print("Invalid category. Please enter 1, 2, or 3.")
 
     def reset_game(self):
-        """" Resets the game before beginning a new game """
+        """ Resets the game before beginning a new game """
 
         self.guessed_letters = []
         self.wrong_guesses = 0
@@ -114,7 +114,7 @@ class WordGuess():
         else:
             print("Guessed letters: ", ", ".join(self.guessed_letters))
 
-        print("Attemps remaining: ", attempts_remaining)
+        print("Attempts remaining: ", attempts_remaining)
         print("------------------------------------------------")
 
     def get_guess(self):
@@ -173,55 +173,40 @@ class WordGuess():
 
         return self.wrong_guesses >= self.max_attempts
     
-    # def display_game(self):  # display the current game information
+    def play(self):
+        """Run the game until the player wins, loses, or quits."""
 
-    #     print("Word: ", self.display_word())
-    #     print("Guessed letters: ", self.guessed_letters)
-    #     print("Wrong guesses: ", self.wrong_guesses, " out of ", self.max_attempts)
+        self.create_player()
+        assert self.player is not None
+        self.choose_category()
+        self.reset_game()
 
-    def play(self):     # run the game until the player wins, loses or quits
-        print("Welcome to WORD GUESS!")
-        print()
-        
-        while True: 
-            print()
+        while True:
             self.display_game()
 
-            # print("Word: ", self.display_word())
-            # print("Guessed letter: ", self.guessed_letters)
-            # print(
-            #     "wrong guesses: ",
-            #     self.wrong_guesses,
-            #     "out of ",
-            #     self.max_attempts
-            # )
-            guess = input("Enter a letter (or type 'quit' to exit): ").strip().upper()
+            guess = self.get_guess()
 
-            # check if the user wants to quit
             if guess == "QUIT":
                 print("Thanks for playing - Enjoy your day!")
+                print("The secret word was:", self.secret_word)
                 break
 
-            if len(guess) != 1 or not guess.isalpha():
-                print("Please enter one letter.")
-                continue
-
-            if guess in self.guessed_letters:
-                print("You already guessed that letter.")
-                continue
-            
             self.check_guess(guess)
 
             if self.has_won():
                 print()
-                print("Word: ", self.display_word())
-                print("Congratulations!  You guessed the word!")
+                print("Word:", self.display_word())
+                print(
+                    f"Congratulations, "
+                    f"{self.player.get_first_name()}! "
+                    "You guessed the word!"
+                )
                 break
 
             if self.has_lost():
                 print()
                 print("You have no more guesses!")
-                print("The secret word was: ", self.secret_word)
+                print("The secret word was:", self.secret_word)
                 break
 
 def main():
